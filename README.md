@@ -1,16 +1,32 @@
-# Project Name
-Project description
+# Powershell ACH Totals
+This script grabs various totals from a NACHA formatted ACH file and saves them into OpCon properties.  Comparisions can be done with these values and others to ensure the correct file is being processed.
+
+# Prerequisites
+  * Powershell 3+
+  * OpCon MSLSAM v19+
+  * OpCon Release v18.3+
+
+# Instructions
+This script can be run on a server or from the OpCon script repository.
+
+ Parameters:
+ 
+    * [string]$ACHFile (mandatory) - Path to ACH file
+    * [string]$PropertyName (mandatory) - Property name for debit totals
+    * [string]$PropertyName1 (mandatory) - Property name for credit totals
+    * [string]$MsginPath (mandatory) - Path to MSLSAM MSGIN directory
+    * [string]$MsginUser (mandatory) - User to use for MSGIN events
+    * [string]$MsginPass (mandatory) - Password/Token for MSGIN events
+    * [switch]$DebugMode - Option to only display what the OpCon event will be, does not send it to MSGIN
+
+```
+powershell.exe -ExecutionPolicy Bypass -File "c:\OpConACH.ps1" -ACHFile "C:\ProgramData\OpConxps\ACH.ach" -PropertyName "SI.Debit.[[$SCHEDULE DATE]].[[$SCHEDULE NAME]]" -PropertyName1 "SI.Credit.[[$SCHEDULE DATE]].[[$SCHEDULE NAME]]" -MsginPath "C:\ProgramData\OpConxps\MSLSAM\MSGIN" -MsginUser [[MSGINuser]] -MsginPass [[MSGINpass]]
+```
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
 
 SMA Technologies assumes no liability for damage caused by the usage of any of the files offered here via this Github repository.
-
-# Prerequisites
-
-
-# Instructions
-
 
 # License
 Copyright 2019 SMA Technologies
